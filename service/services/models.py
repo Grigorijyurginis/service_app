@@ -55,7 +55,7 @@ class Subscription(models.Model):
     service = models.ForeignKey(Service, related_name='subscriptions', on_delete=models.CASCADE)
     plan = models.ForeignKey(Plan, related_name='subscriptions', on_delete=models.CASCADE)
     price = models.PositiveIntegerField(default=0)
-    comment = models.CharField(max_length=50, default='')  # requered=False
+    comment = models.CharField(max_length=50, default='', db_index=True, blank=True)
 
     def save(self, *args, **kwargs):
         creating = not bool(self.id)
